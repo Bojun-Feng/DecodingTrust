@@ -1,9 +1,21 @@
-key: null
+key: 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
 dry_run: False
 
 defaults:
   - _self_
   - override hydra/launcher: submitit_slurm
+
+model_config:
+  model: "hf/meta-llama/Llama-2-7b-chat-hf"
+  type: CHAT
+  conv_template: "llama-2"
+
+  model_loader: HF
+  torch_dtype: BFLOAT16
+  quant_file: null
+  tokenizer_name: meta-llama/Llama-2-7b-chat-hf
+  trust_remote_code: true
+  use_auth_token: true
 
 hydra:
   mode: MULTIRUN
@@ -21,7 +33,7 @@ hydra:
     nodes: 1
     gres: gpu:1
     name: ${hydra.job.name}
-    partition: compute
+    partition: general
     comment: null
     signal_delay_s: 120
     max_num_timeout: 0

@@ -1,5 +1,7 @@
 from typing import Union, Dict
 
+import shutil
+import os
 import hydra
 from importlib import import_module
 from dt.configs.configs import BaseConfig
@@ -19,7 +21,6 @@ PERSPECTIVES = {
     "harmfulness": "dt.perspectives.harmfulness.text_generation_hydra"
 }
 
-
 cs = ConfigStore.instance()
 cs.store(name="config", node=BaseConfig)
 cs.store(name="slurm_config", node=BaseConfig)
@@ -28,6 +29,7 @@ cs.store(name="joblib_config", node=BaseConfig)
 
 @hydra.main(config_path="configs", config_name="config", version_base="1.2")
 def main(raw_config: Union[DictConfig, Dict]) -> None:
+    
     # The 'validator' methods will be called when you run the line below
     config: BaseConfig = OmegaConf.to_object(raw_config)
 

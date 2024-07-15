@@ -2,7 +2,7 @@
 
 declare -a folders=("adv_demonstration" "advglue" "fairness" "machine_ethics" "ood" "privacy" "stereotype" "toxicity")
 
-command="dt-run --config-name slurm_config --multirun +model_config=autogptq,hf"
+command="dt-run --config-name slurm_config --multirun +model_config=hf"
 
 for folder in "${folders[@]}"; do
     # get all config names without the .yaml extension
